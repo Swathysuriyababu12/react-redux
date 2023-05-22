@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { fetchData } from "./actions";
+import { fetchData } from "../actions";
 
-const App = ({ data, isLoading, error, fetchData }) => {
+const MyComponent = ({ data, isLoading, error, fetchData }) => {
   useEffect(() => {
     fetchData(); // Dispatch the fetchData action when the component mounts
   }, [fetchData]);
@@ -17,15 +17,7 @@ const App = ({ data, isLoading, error, fetchData }) => {
 
   return (
     <div>
-      {console.log(data)}
-      {data &&
-        data.map((item) => {
-          return (
-            <div>
-              <div key={item.id}>{item.title}</div>;<div>{item.price}</div>
-            </div>
-          );
-        })}
+      {data && data.map((item) => <div key={item.id}>{item.name}</div>)}
     </div>
   );
 };
@@ -38,4 +30,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { fetchData })(App);
+export default connect(mapStateToProps, { fetchData })(MyComponent);
